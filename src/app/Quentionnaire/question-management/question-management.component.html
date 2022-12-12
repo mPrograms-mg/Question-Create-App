@@ -1,0 +1,142 @@
+<div class="quesManagement">
+  <h1>Question Management</h1>
+  <h5>Application that allows you to create questions and answer questions.</h5>
+  <!-- <button class="ql" routerLink="/question-list">Question's List</button>
+  <button class="cq" routerLink="/create-question">Create Question</button> -->
+</div>
+
+<div class="container" *ngIf="QuestionData?.length !== 0">
+  <div class="row">
+    <ng-container *ngFor="let item of QuestionData; let i = index">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="item.type === 1">
+              <h5 class="card-title">Question: {{ item.question }}</h5>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Option 1: {{ item.option1 }}</p>
+                </div>
+                <div class="col-sm-6">
+                  <p>Option 2: {{ item.option2 }}</p>
+                </div>
+              </div>
+              <p>Type: Single Choice Question</p>
+              <p>Date:{{ item.date | date : "short" }}</p>
+              <button
+                type="submit"
+                class="btn btn-outline-success"
+                (click)="editQue(item.id)"
+              >
+                Edit
+              </button>
+              <button
+                type="submit"
+                class="btn btn-outline-danger"
+                id="btn"
+                (click)="deleteQue(i)"
+              >
+                Delete
+              </button>
+            </div>
+            <div *ngIf="item.type === 2">
+              <h5 class="card-title">Question: {{ item.question }}</h5>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Option 1: {{ item.option1 }}</p>
+                </div>
+                <div class="col-sm-6">
+                  <p>Option 2: {{ item.option2 }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Option 1: {{ item.option4 }}</p>
+                </div>
+                <div class="col-sm-6">
+                  <p>Option 2: {{ item.option4 }}</p>
+                </div>
+              </div>
+              <p>Type: Multiple Choice Question</p>
+              <p>Date:{{ item.date | date : "short" }}</p>
+              <button
+                type="submit"
+                class="btn btn-outline-success"
+                (click)="editQue(item.id)"
+              >
+                Edit
+              </button>
+              <button
+                type="submit"
+                class="btn btn-outline-danger"
+                id="btn"
+                (click)="deleteQue(i)"
+              >
+                Delete
+              </button>
+            </div>
+            <div *ngIf="item.type === 3">
+              <h5 class="card-title">Question: {{ item.question }}</h5>
+              <p>Type: Open Question</p>
+              <p>Date:{{ item.date | date : "short" }}</p>
+              <button
+                type="submit"
+                class="btn btn-outline-success"
+                (click)="editQue(item.id)"
+              >
+                Edit
+              </button>
+              <button
+                type="submit"
+                class="btn btn-outline-danger"
+                id="btn"
+                (click)="deleteQue(i)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- <div *ngIf="QuestionData?.length !== 0">
+  <ng-container *ngFor="let item of QuestionData; let i = index">
+    <div class="queBox">
+      <div class="que">
+        <div *ngIf="item.type === 1">
+          <p>Question:{{ item.question }}</p>
+          <p>Option:{{ item.option1 }}</p>
+          <p>Option:{{ item.option2 }}</p>
+          <p>Type: Single Choice Question</p>
+          <p>Date:{{ item.date | date : "short" }}</p>
+        </div>
+        <div *ngIf="item.type === 2">
+          <p>Question:{{ item.question }}</p>
+          <p>Option:{{ item.option1 }}</p>
+          <p>Option:{{ item.option2 }}</p>
+          <p>Option:{{ item.option3 }}</p>
+          <p>Option:{{ item.option4 }}</p>
+          <p>Type: Multiple Choice Question</p>
+          <p>Date:{{ item.date | date : "short" }}</p>
+        </div>
+        <div *ngIf="item.type === 3">
+          <p>Question:{{ item.question }}</p>
+          <p>Type: Open Question</p>
+          <p>Date:{{ item.date | date : "short" }}</p>
+        </div>
+
+        <div class="actionBtn">
+          <button type="submit" (click)="editQue(item.id)">Edit</button>
+          <button type="submit" (click)="deleteQue(i)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div> -->
+
+<div *ngIf="QuestionData?.length == 0">
+  <h4 style="text-align: center; font-weight: 300">No Question Available</h4>
+</div>

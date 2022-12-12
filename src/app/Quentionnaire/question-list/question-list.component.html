@@ -1,0 +1,326 @@
+<div class="questionList">
+  <h2>Question's List</h2>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="unanswered">
+        <h3 class="text-center">Un-answered Questions</h3>
+        <ng-container *ngFor="let item of Unans; let i = index">
+          <div class="card">
+            <div class="card-body">
+              <div *ngIf="item.type == 1">
+                <!--  && item.answered == false -->
+                <form [formGroup]="AnsType" (ngSubmit)="SubmitAns(item.id, 1)">
+                  <h5 class="card-title">Question: {{ item.question }}</h5>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p>
+                        <input
+                          type="radio"
+                          class="form-check-input"
+                          value="{{ item.option1 }}"
+                          formControlName="option2"
+                        />
+                        {{ item.option1 }}
+                      </p>
+                    </div>
+                    <div class="col-sm-6">
+                      <p>
+                        <input
+                          type="radio"
+                          class="form-check-input"
+                          value="{{ item.option2 }}"
+                          formControlName="option2"
+                        />
+                        {{ item.option2 }}
+                      </p>
+                    </div>
+                  </div>
+                  <p>Type: single Question</p>
+                  <p>Date: {{ item.date | date : "short" }}</p>
+                  <button type="submit" class="btn btn-outline-success">
+                    Submit
+                  </button>
+                </form>
+              </div>
+              <div *ngIf="item.type == 2">
+                <!-- && item.answered == false -->
+                <form [formGroup]="AnsType" (ngSubmit)="SubmitAns(item.id, 2)">
+                  <h5 class="card-title">Question: {{ item.question }}</h5>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input
+                        type="checkbox"
+                        name="option"
+                        value="{{ item.option1 }}"
+                        formControlName="option1"
+                        (change)="checkBox($event)"
+                        class="form-check-input"
+                      />
+                      {{ item.option1 }}
+                    </div>
+                    <div class="col-sm-6">
+                      <input
+                        type="checkbox"
+                        name="option"
+                        value="{{ item.option2 }}"
+                        formControlName="option2"
+                        (change)="checkBox($event)"
+                        class="form-check-input"
+                      />
+                      {{ item.option2 }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input
+                        type="checkbox"
+                        name="option"
+                        value="{{ item.option3 }}"
+                        formControlName="option3"
+                        (change)="checkBox($event)"
+                        class="form-check-input"
+                      />
+                      {{ item.option3 }}
+                    </div>
+                    <div class="col-sm-6">
+                      <input
+                        type="checkbox"
+                        name="option"
+                        value="{{ item.option4 }}"
+                        formControlName="option4"
+                        (change)="checkBox($event)"
+                        class="form-check-input"
+                      />
+                      {{ item.option4 }}
+                    </div>
+                  </div>
+                  <p class="type">Type: multiple Question</p>
+                  <p>Date: {{ item.date | date : "short" }}</p>
+                  <button type="submit" class="btn btn-outline-success">
+                    Submit
+                  </button>
+                </form>
+              </div>
+              <div *ngIf="item.type == 3">
+                <!-- && item.answered == false -->
+                <form [formGroup]="AnsType" (ngSubmit)="SubmitAns(item.id, 3)">
+                  <h5 class="card-title">Question: {{ item.question }}</h5>
+
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">
+                        Ans:</span
+                      >
+                      <input
+                        type="text"
+                        name="ans"
+                        formControlName="ans"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+                  <p>Type: open Question</p>
+                  <p>Date: {{ item.date | date : "short" }}</p>
+                  <button type="submit" class="btn btn-outline-success">
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="answered">
+        <h3 class="text-center">Answered Questions</h3>
+        <ng-container *ngFor="let item of Ans; let i = index">
+          <div class="card">
+            <div class="card-body">
+              <div *ngIf="item.type == 1">
+                <!-- && item.answered == true -->
+                <form [formGroup]="AnsType" (ngSubmit)="BacktoUn(item.id, 1)">
+                  <h5 class="card-title">Question: {{ item.question }}</h5>
+                  <p>Ans:{{ item.answer }}</p>
+                  <p>Type: single Question</p>
+                  <p>Ans Date: {{ item?.ansDate | date : "short" }}</p>
+                  <button type="submit" class="btn btn-outline-success">
+                    Back
+                  </button>
+                </form>
+              </div>
+              <div *ngIf="item.type == 2">
+                <!-- && item.answered == true -->
+                <form [formGroup]="AnsType" (ngSubmit)="BacktoUn(item.id, 2)">
+                  <h5 class="card-title">Question: {{ item.question }}</h5>
+                  <p>Ans:{{ item.answer }}</p>
+                  <p class="type">Type: multiple Question</p>
+                  <p>Ans Date: {{ item?.ansDate | date : "short" }}</p>
+                  <button type="submit" class="btn btn-outline-success">
+                    Back
+                  </button>
+                </form>
+              </div>
+              <div *ngIf="item.type == 3">
+                <!-- && item.answered == true -->
+                <form [formGroup]="AnsType" (ngSubmit)="BacktoUn(item.id, 3)">
+                  <h5 class="card-title">Question: {{ item.question }}</h5>
+                  <p>Anw : {{ item.answer }}</p>
+                  <p>Type: open Question</p>
+                  <p>Ans Date: {{ item?.ansDate | date : "short" }}</p>
+                  <button type="submit" class="btn btn-outline-success">
+                    Back
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="questionList">
+    <h1>Question's List</h1>
+    <button class="QML" routerLink="/">Question Management</button>
+    <div class="qList">
+      <div class="unanswered">
+        <h2>Un-answered Questions</h2>
+        <ng-container *ngFor="let item of Unans; let i = index">
+          <div class="queBox">
+            <div class="que">
+              <div *ngIf="item.type === 1">
+                <form [formGroup]="AnsType" (ngSubmit)="SubmitAns(item.id, 1)">
+                  <p>Question: {{ item.question }}</p>
+                  <p>
+                    <input
+                      type="radio"
+                      value="{{ item.option1 }}"
+                      formControlName="option2"
+                      (change)="radioBtn($event)"
+                    />
+                    {{ item.option1 }}
+                  </p>
+                  <p>
+                    <input
+                      type="radio"
+                      id="option2"
+                      value="{{ item.option2 }}"
+                      formControlName="option2"
+                      (change)="radioBtn($event)"
+                    />
+                    {{ item.option2 }}
+                  </p>
+                  <p>Type: single Question</p>
+                  <p>Date: {{ item.date | date : "short" }}</p>
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+
+              <div *ngIf="item.type === 2">
+                <form [formGroup]="AnsType" (ngSubmit)="SubmitAns(item.id, 2)">
+                  <p>Question: {{ item.question }}</p>
+                  <p>
+                    <input
+                      type="checkbox"
+                      name="option"
+                      value="{{ item.option1 }}"
+                      formControlName="option1"
+                      (change)="checkBox($event)"
+                    />
+                    {{ item.option1 }}
+                  </p>
+                  <p>
+                    <input
+                      type="checkbox"
+                      name="option"
+                      value="{{ item.option2 }}"
+                      formControlName="option2"
+                      (change)="checkBox($event)"
+                    />
+                    {{ item.option2 }}
+                  </p>
+                  <p>
+                    <input
+                      type="checkbox"
+                      name="option"
+                      value="{{ item.option3 }}"
+                      formControlName="option3"
+                      (change)="checkBox($event)"
+                    />
+                    {{ item.option3 }}
+                  </p>
+                  <p>
+                    <input
+                      type="checkbox"
+                      name="option"
+                      value="{{ item.option4 }}"
+                      formControlName="option4"
+                      (change)="checkBox($event)"
+                    />
+                    {{ item.option4 }}
+                  </p>
+                  <p>Date: {{ item.date | date : "short" }}</p>
+                  <p>Type: multiple Question</p>
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+
+              <div *ngIf="item.type === 3">
+                <form [formGroup]="AnsType" (ngSubmit)="SubmitAns(item.id, 3)">
+                  <p>Question: {{ item.question }}</p>
+                  <p>
+                    Anw : <input type="text" name="ans" formControlName="ans" />
+                  </p>
+                  <p>Date: {{ item.date | date : "short" }}</p>
+                  <p>Type: open Question</p>
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+
+            <div></div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="answered">
+        <h2>Answered Questions</h2>
+        <ng-container *ngFor="let item of Ans; let i = index">
+          <div class="queBox">
+            <div class="que">
+              <div *ngIf="item.type === 1">
+                <form [formGroup]="AnsType" (ngSubmit)="BacktoUn(item.id, 1)">
+                  <p>Question:{{ item.question }}</p>
+                  <p>Ans:{{ item.answer }}</p>
+                  <p>Ans Date: {{ item?.ansDate | date : "short" }}</p>
+                  <button type="submit">Back</button>
+                </form>
+              </div>
+
+              <div *ngIf="item.type === 2">
+                <form [formGroup]="AnsType" (ngSubmit)="BacktoUn(item.id, 2)">
+                  <p>Question:{{ item.question }}</p>
+                  <p>Ans:{{ item.answer }}</p>
+                  <p>Ans Date: {{ item?.ansDate | date : "short" }}</p>
+                  <button type="submit">Back</button>
+                </form>
+              </div>
+
+              <div *ngIf="item.type === 3">
+                <form [formGroup]="AnsType" (ngSubmit)="BacktoUn(item.id, 3)">
+                  <p>Question:{{ item.question }}</p>
+                  <p>Anw : {{ item.answer }}</p>
+                  <p>Ans Date: {{ item?.ansDate | date : "short" }}</p>
+                  <button type="submit">Back</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div> -->
+</div>

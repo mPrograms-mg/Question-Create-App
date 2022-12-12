@@ -1,0 +1,76 @@
+.quesManagement {
+    padding: 0 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: 15px;
+    h1 {
+      text-align: center;
+      font-weight: 300;
+    }
+  
+    // .qm {
+    //   font-size: 16px;
+    //   margin-top: 20px;
+    //   padding: 10px;
+    //   height: max-content;
+    //   border: 1px solid black;
+    //   border-radius: 2px;
+    //   background: transparent;
+    //   cursor: pointer;
+    //   position: absolute;
+    //   top: -10px;
+    //   right: 200px;
+    // }
+    // .qm:hover {
+    //   color: white;
+    //   background-color: black;
+    // }
+  
+    .quesType {
+      margin: 20px 20px;
+    }
+    .quesType label {
+      font-weight: 200;
+    }
+  
+    // button {
+    //   font-size: 16px;
+    //   margin-top: 20px;
+    //   padding: 10px;
+    //   height: max-content;
+    //   border: 1px solid black;
+    //   border-radius: 2px;
+    //   background: transparent;
+    //   cursor: pointer;
+    // }
+    // button:hover {
+    //   color: white;
+    //   background-color: black;
+    // }
+  
+    .CreateQ {
+      margin: 20px 20px;
+  
+      h4 {
+        font-weight: 200;
+      }
+  
+      input[type="text"] {
+        padding: 5px 10px;
+        font-size: 15px;
+      }
+      input[type="number"] {
+        padding: 3px;
+      }
+    }
+  }
+  // p {
+  //   // margin-top: 25px;
+  //   // text-align: center;
+  // }
+  
+  h3 {
+    font-weight: 300;
+  }
+  
