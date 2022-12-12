@@ -1,4 +1,6 @@
-# Questionnaire
+# Question Create App
+
+This App use for create different type question like single option, multiple, question-ans etc
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
 
